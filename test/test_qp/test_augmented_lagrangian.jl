@@ -1,11 +1,11 @@
 @testset "Augmented Lagrangian QP solver" begin
-    @load joinpath(@__DIR__, "qp_data.jld2") qp_data
-    qp = QuadraticProgram(qp_data.Q, qp_data.q, qp_data.A, qp_data.b, qp_data.G, qp_data.h)
-    x, λ, μ = solve_qp_augmented_lagrangian(qp)
+    @load joinpath(@__DIR__, "qp_data.jld2") qp
+    qp_problem = QuadraticProgram(qp.Q, qp.q, qp.A, qp.b, qp.G, qp.h)
+    x, λ, μ = solve_augmented_lagrangian(qp_problem)
 
-    x_expected = [-0.32623080431873486, 0.24943798756566352, -0.43226765471113954, -1.417224694812929, -1.3994527462892892, 0.609958243607347, -0.07312201788675675, 1.3031477492933286, 0.5389034765217047, -0.722581370760872]
-    λ_expected = [-0.1282341950085557, -2.837717107754904, -0.8322858252247716]
-    μ_expected = [0.03640903482216018, 0.0, 0.0, 1.0595504446962325, 0.0]
+    x_expected = [-0.43550583177746516, 0.28372074622818044, -0.5251063315649425, -1.3839636733299523, -1.4220549543622256, 0.5880492269328014, -0.045150442643051895, 1.3474387567012018, 0.47370274986711924, -0.7176674961483989]
+    λ_expected = [-0.03814022771932146, -2.99391684081393, -0.951923551611948]
+    μ_expected = [0.1013287893271988, 0.3256114505153771, 0.0, 0.5180654288865217, 0.0]
 
     @test x ≈ x_expected atol = 1e-6
     @test λ ≈ λ_expected atol = 1e-6

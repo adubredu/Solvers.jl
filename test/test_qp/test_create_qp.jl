@@ -1,5 +1,4 @@
 @testset "Create QP" begin
-    @load joinpath(@__DIR__, "qp_data.jld2") qp_data
-    qp = QuadraticProgram(qp_data.Q, qp_data.q, qp_data.A, qp_data.b, qp_data.G, qp_data.h)
-
+    @load joinpath(@__DIR__, "qp_data.jld2") qp
+    @test_nowarn qp_problem = QuadraticProgram(qp.Q, qp.q, qp.A, qp.b, qp.G, qp.h) 
 end
