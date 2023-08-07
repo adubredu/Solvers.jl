@@ -1,6 +1,5 @@
 using Solvers
 using Test
 
-@testset "Solvers.jl" begin
-    # Write your tests here.
-end
+include("test_qp/test_create_qp.jl")
+include("test_qp/test_augmented_lagrangian.jl")
