@@ -59,23 +59,6 @@ end
 
 """
 $(SIGNATURES)
-Logs the current iteration of the augmented Lagrangian method.
-
-# Arguments
-- `qp::QuadraticProgram`: The quadratic program to solve.
-- `iter::Int`: The current iteration.
-- `AL_gradient::Vector`: The gradient of the augmented Lagrangian.
-- `x::Vector`: The current solution.
-- `μ::Vector`: The inequality constraint dual variable.
-- `λ::Vector`: The equality constraint dual variable.
-- `ρ::Real`: The penalty parameter.
-"""
-function log_iteration(qp::QuadraticProgram, iter::Int, AL_gradient::Vector, x::Vector, μ::Vector, λ::Vector, ρ::Real)
-    @printf("%3d   % 7.2e   % 7.2e   % 7.2e   % 7.2e   % 7.2e   %5.0e\n", iter, cost(qp, x), norm(c_eq(qp, x)), maximum(c_ineq(qp, x)), ρ, augmented_lagrangian(qp, x, μ, λ, ρ), norm(AL_gradient))
-end
-
-"""
-$(SIGNATURES)
 Solves the given quadratic program using the augmented Lagrangian method.
 
 # Arguments
