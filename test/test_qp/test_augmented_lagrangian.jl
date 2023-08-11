@@ -1,4 +1,4 @@
-@testset "Augmented Lagrangian QP solver" begin
+@testset "Augmented Lagrangian QP Problem 1" begin
     @load joinpath(@__DIR__, "qp_data.jld2") qp
     qp_problem = QuadraticProgram(qp.Q, qp.q, qp.A, qp.b, qp.G, qp.h)
     x, λ, μ = solve_augmented_lagrangian(qp_problem)
@@ -10,4 +10,19 @@
     @test x ≈ x_expected atol = 1e-6
     @test λ ≈ λ_expected atol = 1e-6
     @test μ ≈ μ_expected atol = 1e-6
+end
+
+@testset "Augmented Lagrangian QP problem 2" begin
+    Q = Solvers.sparse(2*[0.4 0; 0 1])
+    q = [-5.0; -6.0]
+    G = [1 -1; -0.3 -1]
+    h = [-2.0, -8]
+    A = Solvers.sparse([0.0 0; 0 0])
+    b = [0.0, 0.0]
+
+    qp_problem = QuadraticProgram(Q, q, A, b, G, h)
+    x, λ, μ = solve_augmented_lagrangian(qp_problem) 
+    x_expected = [4.615384602255649, 6.615384594713718]
+    @show x_expected
+    @test x ≈ x_expected atol = 1e-3
 end

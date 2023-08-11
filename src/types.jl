@@ -7,10 +7,10 @@ struct QuadraticProgram <: Program
             Gx <= h
 
     =#
-    Q::SparseMatrixCSC{Float64,Int64}
-    q::Vector{Float64}
-    A::SparseMatrixCSC{Float64,Int64}
-    b::Vector{Float64}
-    G::SparseMatrixCSC{Float64,Int64}
-    h::Vector{Float64}
+    Q::AbstractMatrix{Float64}
+    q::AbstractArray{Float64}
+    A::AbstractMatrix{Float64}
+    b::AbstractArray{Float64}
+    G::AbstractMatrix{Float64}
+    h::AbstractArray{Float64}
 end
