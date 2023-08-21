@@ -19,11 +19,6 @@
     qp_problem = QuadraticProgram(Q, q, A, b, G, h)
 
     x = solve_barrier_method(qp_problem)
-    x_expected = [0.0, 1.0]
-
-    min_val = 0.5 * x' * Q * x + q' * x
-    min_val_exp = 0.5 * x_expected' * Q * x_expected + q' * x_expected
-    @show min_val
-    @show min_val_exp
+    x_expected = [0.0, 1.0] 
     @test x ≈ x_expected atol = 1e-3
 end

@@ -9,12 +9,16 @@ using DocStringExtensions
 
 include("types.jl")
 
+include("lp/lp.jl")
+include("lp/mehrotra.jl")
+
 include("qp/qp.jl")
 include("qp/augmented_lagrangian.jl")
-include("qp/barrier_method.jl")
 
-export QuadraticProgram
+export LinearProgram,
+       QuadraticProgram
+
 export solve_augmented_lagrangian,
-       solve_barrier_method
+       solve_mehrotra
 
 end
